@@ -1,7 +1,10 @@
 package br.com.escolanovaeratech.listapokemonmock.model
 
+import androidx.annotation.DrawableRes
+
 data class PokemonModel(
     val id: Int,
     val name: String,
-    val imageRes:  Int,
-)
+    @param: DrawableRes val imageRes:  Int,
+
+    )

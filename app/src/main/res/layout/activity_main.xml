@@ -7,6 +7,12 @@
     android:clipChildren="false"
     android:clipToPadding="false"
     tools:context=".MainActivity">
+    
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewPokemon"
+        android:layout_width="match_parent"
+        tools:listitem="@layout/item_pokemon"
+        android:layout_height="match_parent"
 
 
 
