@@ -12,14 +12,16 @@ import br.com.escolanovaeratech.listapokemonmock.R
 import br.com.escolanovaeratech.listapokemonmock.model.PokemonModel
 
 
-class PokemonAdapter: ListAdapter<PokemonModel, PokemonAdapter.PokemonViewHolder>(PokemonDiffCallback) {
+class PokemonAdapter(function: () -> Unit) : ListAdapter<PokemonModel, PokemonAdapter.PokemonViewHolder>(PokemonDiffCallback) {
+  private val onClickListener: (PokemonModel) -> Unit = {}
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): PokemonViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_pokemon, parent, false)
-        return PokemonViewHolder(view)
+        return PokemonViewHolder(view, onClickListener)
     }
 
     override fun onBindViewHolder(
@@ -30,7 +32,10 @@ class PokemonAdapter: ListAdapter<PokemonModel, PokemonAdapter.PokemonViewHolder
         holder.bind(model)
     }
 
-    class PokemonViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
+    class PokemonViewHolder (
+        itemView: View,
+        val onClickListener: (PokemonModel) -> Unit = {}
+        ) : RecyclerView.ViewHolder(itemView){
 
         private val imgPokemon: ImageView = itemView.findViewById(R.id.imgPokemon)
         private val textId: TextView = itemView.findViewById(R.id.textId)
@@ -40,6 +45,10 @@ class PokemonAdapter: ListAdapter<PokemonModel, PokemonAdapter.PokemonViewHolder
             imgPokemon.setImageResource(model.imageRes)
             textId.text = model.id.toString()
             textName.text = model.name
+
+            itemView.setOnClickListener {
+                onClickListener.invoke(model)
+            }
         }
             }
 
