@@ -23,9 +23,9 @@ class MainActivity : AppCompatActivity() {
         val rvPokemon = findViewById<RecyclerView>(R.id.recyclerViewPokemon)
         applayWindowInsets(rvPokemon)
 
-        val adapter = PokemonAdapter(){
-            startActivity(Intent(this, DetailActivity::class.java))
-
+        val adapter = PokemonAdapter { clickPokemon ->
+            val intent = DetailActivity.createIntent(this, clickPokemon.id)
+            startActivity(intent)
         }
 
         rvPokemon.adapter = adapter

@@ -37,4 +37,8 @@ object PokemonMock {
             name = "Snorlax",
             imageRes = R.drawable.snorlax)
     )
+
+    fun findById(id: Int): PokemonModel? {
+        return pokemon.find { it.id == id }
+    }
 }

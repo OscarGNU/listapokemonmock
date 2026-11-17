@@ -12,8 +12,9 @@ import br.com.escolanovaeratech.listapokemonmock.R
 import br.com.escolanovaeratech.listapokemonmock.model.PokemonModel
 
 
-class PokemonAdapter(function: () -> Unit) : ListAdapter<PokemonModel, PokemonAdapter.PokemonViewHolder>(PokemonDiffCallback) {
-  private val onClickListener: (PokemonModel) -> Unit = {}
+class PokemonAdapter(
+    private val onClickListener: (PokemonModel) -> Unit
+) : ListAdapter<PokemonModel, PokemonAdapter.PokemonViewHolder>(PokemonDiffCallback) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
